@@ -1,12 +1,22 @@
-const expirationSelect = document.querySelector("[data-expiration-year]")
+const expYearSelect     = document.querySelector("[data-expiration-year]")
+const expMonthSelect    = document.querySelector("[data-expiration-month]")
 const logo = document.querySelector("[data-logo]")
 const currentYear = new Date().getFullYear()
 
-for (let i = currentYear; i < currentYear + 10; i++) {
+const addZero = (n) => { return (parseInt(n, 10) < 10 ? '0' : '') + n; }
+
+for (let i = 1; i <= 12; ++i) {
+    const option = document.createElement("option")
+    option.value = addZero(i)
+    option.innerText = addZero(i)
+    expMonthSelect.append(option)
+}
+
+for (let i = currentYear; i < currentYear + 10; ++i) {
   const option = document.createElement("option")
   option.value = i
   option.innerText = i
-  expirationSelect.append(option)
+  expYearSelect.append(option)
 }
 
 document.addEventListener("keydown", e => {
